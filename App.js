@@ -9,7 +9,7 @@
 //Basic Components
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 //store
 import store from './store/store';
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-});
+})
 
 export default App;

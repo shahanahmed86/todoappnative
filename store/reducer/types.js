@@ -1,5 +1,7 @@
 const actionTypes = {
-    FETCHDATA: 'FETCHDATA',
+    ONADDTODO: 'ONADDTODO',
+    ONEDITTODO: 'ONEDITTODO',
+    ONDELETETODO: 'ONDELETETODO',
 }
 
 export default actionTypes;

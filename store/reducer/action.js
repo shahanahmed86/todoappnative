@@ -1,11 +1,27 @@
 import actionTypes from './types';
 
 const allMethods = {
-    onFetchData: data => {
+    onAddTodo: message => {
         return dispatch => {
             dispatch({
-                type: actionTypes.FETCHDATA,
-                payload: data,
+                type: actionTypes.ONADDTODO,
+                payload: message,
+            })
+        }
+    },
+    onEditTodo: (message, ind) => {
+        return dispatch => {
+            dispatch({
+                type: actionTypes.ONEDITTODO,
+                payload: { message, ind },
+            })
+        }
+    },
+    onDeleteTodo: ind => {
+        return dispatch => {
+            dispatch({
+                type: actionTypes.ONDELETETODO,
+                payload: ind,
             })
         }
     },
