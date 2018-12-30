@@ -4,6 +4,7 @@ import {
     StyleSheet,
     View,
     Button, Text, TextInput,
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -70,69 +71,67 @@ class TodoApp extends Component {
         const { message, editing } = this.state;
         const { todo } = this.props.state;
         return (
-            <View style={styles.mainBox}>
-                <View style={styles.mainBox}>
+            <ScrollView>
+                <View style={styles.container}>
                     <View>
-                        <Text style={{ fontSize: 24 }}>Todo App with Redux</Text>
-                    </View>
-                    <View style={styles.inputFlex}>
-                        <TextInput
-                            style={styles.textBox}
-                            placeholder='Write your things to do'
-                            value={message}
-                            onChangeText={message => this.setState({ message })}
-                        />
-                        <View style={{ width: 80 }}>
-                            <Button
-                                onPress={this.onSubmitHandler}
-                                color={editing ? 'purple' : 'green'}
-                                title={editing ? 'Update' : 'Add'}
-                            />
+                        <View>
+                            <Text style={{ fontSize: 24 }}>Todo App with Redux</Text>
                         </View>
-                    </View>
-                </View>
-                <View style={styles.mainBox}>
-                    {todo.map((val, ind) => {
-                        return (
-                            <View key={ind} style={styles.inputFlex}>
-                                <Text>{1 + parseInt(ind)}</Text>
-                                <Text>{val}</Text>
+                        <View>
+                            <TextInput
+                                style={styles.textBox}
+                                placeholder='Write your things to do'
+                                value={message}
+                                onChangeText={message => this.setState({ message })}
+                            />
+                            <View>
                                 <Button
-                                    color='purple'
-                                    title='Edit'
-                                    onPress={() => this.getRow(ind)}
-                                />
-                                <Button
-                                    color='red'
-                                    title='Delete'
-                                    onPress={() => this.onDelete(ind)}
+                                    onPress={this.onSubmitHandler}
+                                    color={editing ? 'purple' : 'green'}
+                                    title={editing ? 'Update' : 'Add'}
                                 />
                             </View>
-                        );
-                    })}
+                        </View>
+                    </View>
+                    <View>
+                        {todo.map((val, ind) => {
+                            return (
+                                <View key={ind}>
+                                    <Text>{1 + parseInt(ind)}</Text>
+                                    <Text>{val}</Text>
+                                    <Button
+                                        color='purple'
+                                        title='Edit'
+                                        onPress={() => this.getRow(ind)}
+                                    />
+                                    <Button
+                                        color='red'
+                                        title='Delete'
+                                        onPress={() => this.onDelete(ind)}
+                                    />
+                                </View>
+                            );
+                        })}
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    mainBox: {
+    container: {
+        width: '85%',
         flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#F5FCFF',
     },
     textBox: {
-        borderColor: 'black',
         borderWidth: 1,
-        padding: 3,
+        borderColor: 'black',
     },
-    inputFlex: {
-        width: '80%',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
