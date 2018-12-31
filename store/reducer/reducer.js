@@ -1,7 +1,7 @@
 import actionTypes from './types';
 
 const initialState = {
-    todo: ['abc', 'def', 'ghi', 'jkl']
+    todo: [],
 }
 
 const reducer = (state = initialState, action) => {
